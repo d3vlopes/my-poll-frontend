@@ -25,7 +25,7 @@ export const Input = ({
 
   return (
     <S.Wrapper>
-      <S.Label>{label}</S.Label>
+      <S.Label htmlFor={name}>{label}</S.Label>
       <S.Input
         name={name}
         id={name}
