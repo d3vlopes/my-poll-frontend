@@ -2,7 +2,7 @@ import { InputHTMLAttributes, useState } from 'react'
 import * as S from './styles'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string
+  label?: string
   initialValue?: string
   onInputChange?: (value: string) => void
 }
@@ -25,7 +25,7 @@ export const Input = ({
 
   return (
     <S.Wrapper>
-      <S.Label htmlFor={name}>{label}</S.Label>
+      {!!label && <S.Label htmlFor={name}>{label}</S.Label>}
       <S.Input
         name={name}
         id={name}
