@@ -1,6 +1,7 @@
 import { Base } from 'layout/Base'
 import { Poll } from 'pages/Poll'
 import { Polls } from 'pages/Polls'
+import { Result } from 'pages/Result'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -20,13 +21,14 @@ root.render(
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="polls" element={<Polls />}></Route>
-          <Route path="polls/:pollId" element={<Poll />} />
+          <Route path="poll/:pollId" element={<Poll />} />
+          <Route path="poll/result/:pollId" element={<Result />} />
           <Route
             path="*"
             element={
-              <main style={{ padding: '1rem' }}>
-                <p>There's nothing here!</p>
-              </main>
+              <div style={{ padding: '1rem' }}>
+                <p>Ops, página não encontrada.</p>
+              </div>
             }
           />
         </Routes>
