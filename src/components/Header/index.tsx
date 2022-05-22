@@ -1,4 +1,5 @@
 import { Container } from 'components/Container'
+import { Link } from 'react-router-dom'
 
 import * as S from './styles'
 
@@ -12,8 +13,8 @@ export const Header = ({ title }: HeaderProps) => {
       <Container>
         <S.Logo>My Poll</S.Logo>
         <S.Nav>
-          <a href="#">Criar enquete</a>
-          <a href="#">Enquetes</a>
+          <Link to="/">Criar enquete</Link>
+          <Link to="/polls">Enquetes</Link>
         </S.Nav>
       </Container>
     </S.Wrapper>

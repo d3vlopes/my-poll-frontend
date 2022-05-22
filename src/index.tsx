@@ -1,4 +1,5 @@
 import { Base } from 'layout/Base'
+import { Polls } from 'pages/Polls'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -17,6 +18,7 @@ root.render(
       <Base>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/polls" element={<Polls />} />
         </Routes>
       </Base>
       <GlobalStyles />
