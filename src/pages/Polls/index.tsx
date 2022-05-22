@@ -35,7 +35,7 @@ export const Polls = () => {
 
   const renderPolls = (poll: PollCardProps) => {
     return (
-      <Link to={`poll/${poll.id}`}>
+      <Link to={`/polls/${poll.id}`}>
         <PollCard
           key={`poll-${poll.id}`}
           title={poll.title}

@@ -1,4 +1,5 @@
 import { Base } from 'layout/Base'
+import { Poll } from 'pages/Poll'
 import { Polls } from 'pages/Polls'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
@@ -18,7 +19,16 @@ root.render(
       <Base>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/polls" element={<Polls />} />
+          <Route path="polls" element={<Polls />}></Route>
+          <Route path="polls/:pollId" element={<Poll />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: '1rem' }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
         </Routes>
       </Base>
       <GlobalStyles />
