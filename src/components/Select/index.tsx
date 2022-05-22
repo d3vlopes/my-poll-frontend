@@ -35,6 +35,7 @@ export const Select = ({
         id={name}
         {...props}
       >
+        <option value="">Todos</option>
         <option value="in progress">Em andamento</option>
         <option value="not start">Não iniciado</option>
         <option value="complete">Finalizado</option>
