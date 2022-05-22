@@ -18,21 +18,25 @@ const wrapperModifiers = {
     padding: 1.6rem 0;
     font-size: ${theme.font.sizes.medium};
     width: 9rem;
+    height: 5.7rem;
   `,
   medium: (theme: DefaultTheme) => css`
     padding: 1.4rem 0;
     font-size: ${theme.font.sizes.medium};
     width: 16.8rem;
+    height: 5.5rem;
   `,
   large: (theme: DefaultTheme) => css`
     padding: 1.6rem 0;
     font-size: ${theme.font.sizes.small};
     width: 18.5rem;
+    height: 5.5rem;
   `,
   fullWidth: (theme: DefaultTheme) => css`
     width: 100%;
     padding: 1.4rem 0;
     font-size: ${theme.font.sizes.medium};
+    height: 5.5rem;
   `,
 
   withIcon: (theme: DefaultTheme) => css`
