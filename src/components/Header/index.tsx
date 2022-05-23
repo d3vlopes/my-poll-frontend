@@ -5,10 +5,10 @@ import { Container } from 'components/Container'
 import * as S from './styles'
 
 export type HeaderProps = {
-  title?: string
+  activeLink?: '/' | '/polls' | string
 }
 
-export const Header = ({ title }: HeaderProps) => {
+export const Header = ({ activeLink }: HeaderProps) => {
   return (
     <S.Wrapper>
       <Container>
@@ -16,8 +16,12 @@ export const Header = ({ title }: HeaderProps) => {
           <S.Logo>My Poll</S.Logo>
         </Link>
         <S.Nav>
-          <Link to="/">Criar enquete</Link>
-          <Link to="/polls">Enquetes</Link>
+          <S.Link isActive={activeLink === '/'} to="/">
+            Criar enquete
+          </S.Link>
+          <S.Link isActive={activeLink === '/polls'} to="/polls">
+            Enquetes
+          </S.Link>
         </S.Nav>
       </Container>
     </S.Wrapper>
