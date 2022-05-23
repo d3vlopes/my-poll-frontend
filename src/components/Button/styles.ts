@@ -68,6 +68,15 @@ export const Wrapper = styled.button<WrapperProps>`
     font-weight: 600;
     transition: color ${theme.transition.default};
 
+    &:disabled {
+      &:hover {
+        filter: brightness(1);
+      }
+
+      cursor: not-allowed;
+      opacity: 0.8;
+    }
+
     &:hover {
       filter: brightness(0.9);
     }
