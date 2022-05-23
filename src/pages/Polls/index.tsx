@@ -1,48 +1,86 @@
-import { Container } from 'components/Container'
-import { PollCard, PollCardProps } from 'components/PollCard'
-import { Select } from 'components/Select'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+
+import { api } from 'services/api'
+
+import { formatDate } from 'utils/format'
+
+import { Container } from 'components/Container'
+import { PollCard } from 'components/PollCard'
+import { Select } from 'components/Select'
+import { Button } from 'components/Button'
 
 import * as S from './styles'
 
-export const Polls = () => {
-  const polls = [
-    {
-      id: '14548ad7s8d7s',
-      title: 'Qual o melhor framework frontend?',
-      startDate: '21/05/2022 - 19:30 hrs',
-      endDate: '21/05/2022 - 19:30 hrs',
-    },
-    {
-      id: '14548ad7s8dsddsdsds',
-      title: 'Qual o melhor time do sul?',
-      startDate: '21/05/2022 - 19:30 hrs',
-      endDate: '21/05/2022 - 19:30 hrs',
-    },
-    {
-      id: '14548hjsdhsydejahdsh',
-      title: 'Qual o melhor anime da história?',
-      startDate: '21/05/2022 - 19:30 hrs',
-      endDate: '21/05/2022 - 19:30 hrs',
-    },
-    {
-      id: '14548ad5dsds8d9s8d9w',
-      title: 'O que devo fazer amanhã?',
-      startDate: '21/05/2022 - 19:30 hrs',
-      endDate: '21/05/2022 - 19:30 hrs',
-    },
-  ] as PollCardProps[]
+interface Poll {
+  id: string
+  question: string
+  status: 'in progress' | 'not start' | 'complete'
+  start_date: string
+  end_date: string
+}
 
-  const renderPolls = (poll: PollCardProps) => {
+export const Polls = () => {
+  const [polls, setPolls] = useState<Poll[]>([])
+  const [selectOption, setSelectOption] = useState('')
+
+  function handleSelectChange(event: ChangeEvent<HTMLSelectElement>) {
+    setSelectOption(event.currentTarget.value)
+  }
+
+  useEffect(() => {
+    async function loadPolls() {
+      try {
+        const { data } = await api.get('/polls')
+        setPolls(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    loadPolls()
+  }, [])
+
+  const renderPoll = (poll: Poll) => {
+    const formattedStartDate = formatDate(poll.start_date)
+    const formattedEndDate = formatDate(poll.end_date)
+
     return (
-      <Link to={`/poll/${poll.id}`}>
+      <Link to={`/poll/${poll.id}`} key={poll.id}>
         <PollCard
-          key={`poll-${poll.id}`}
-          title={poll.title}
-          startDate={poll.startDate}
-          endDate={poll.endDate}
+          title={poll.question}
+          startDate={formattedStartDate}
+          endDate={formattedEndDate}
         />
       </Link>
+    )
+  }
+
+  const filteredPolls = selectOption
+    ? polls.filter((poll) => poll.status === selectOption)
+    : polls
+
+  const renderPolls = () => {
+    return (
+      <>
+        <Select
+          label="Filtrar"
+          value={selectOption}
+          onChange={handleSelectChange}
+        />
+        <S.PollsContainer>{filteredPolls.map(renderPoll)}</S.PollsContainer>
+      </>
+    )
+  }
+
+  const renderNotPoll = () => {
+    return (
+      <S.NotPoll>
+        Você ainda não não criou nem uma enquete.
+        <Link to="/">
+          <Button>Criar enquete</Button>
+        </Link>
+      </S.NotPoll>
     )
   }
 
@@ -52,9 +90,7 @@ export const Polls = () => {
       <S.Description>Encontre aqui a sua enquete</S.Description>
 
       <Container>
-        <Select label="Filtrar" />
-
-        <S.PollsContainer>{polls.map(renderPolls)}</S.PollsContainer>
+        {polls.length === 0 ? renderNotPoll() : renderPolls()}
       </Container>
     </S.Wrapper>
   )

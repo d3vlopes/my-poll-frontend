@@ -38,3 +38,12 @@ export const PollsContainer = styled.div`
     padding: 0 50px;
   }
 `
+
+export const NotPoll = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem;
+  margin-top: 4rem;
+`
