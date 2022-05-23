@@ -27,10 +27,11 @@ export const Wrapper = styled.div`
 
 export const Title = styled.h2`
   ${({ theme }) => css`
-    font-size: ${theme.font.sizes.large};
-    line-height: ${theme.font.sizes.xlarge};
+    font-size: ${theme.font.sizes.medium};
+    line-height: ${theme.font.sizes.medium};
     color: ${theme.colors.black};
     margin-bottom: 1.6rem;
+    text-align: center;
 
     @media (max-width: 1200px) {
       font-size: ${theme.font.sizes.medium};
